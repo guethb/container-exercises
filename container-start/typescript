@@ -1,0 +1,460 @@
+Script started on 2024-11-07 10:05:32+01:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="125" LINES="24"]
+[?2004h~/container-exercises/container-start > podman help
+[?2004lManage pods, containers and images
+
+Usage:
+  podman [options] [command]
+
+Available Commands:
+  attach      Attach to a running container
+  auto-update Auto update containers according to their auto-update policy
+  build       Build an image using instructions from Containerfiles
+  commit      Create new image based on the changed container
+  compose     Run compose workloads via an external provider such as docker-compose or podman-compose
+  container   Manage containers
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create but do not start a container
+  diff        Display the changes to the object's file system
+  events      Show podman system events
+  exec        Run a process in a running container
+  export      Export container's filesystem contents as a tar archive
+  farm        Farm out builds to remote machines
+  generate    Generate structured data based on containers, pods or volumes
+  healthcheck Manage health checks on containers
+  help        Help about any command
+  history     Show history of a specified image
+  image       Manage images
+  images      List images in local storage
+  import      Import a tarball to create a filesystem image
+  info        Display podman system information
+  init        Initialize one or more containers
+  inspect     Display the configuration of object denoted by ID
+  kill        Kill one or more running containers with a specific signal
+  kube        Play containers, pods or volumes from a structured file
+  load        Load image(s) from a tar archive
+  login       Log in to a container registry
+  logout      Log out of a container registry
+  logs        Fetch the logs of one or more containers
+  machine     Manage a virtual machine
+  manifest    Manipulate manifest lists and image indexes
+  mount       Mount a working container's root filesystem
+  network     Manage networks
+  pause       Pause all the processes in one or more containers
+  pod         Manage pods
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image from a registry
+  push        Push an image to a specified destination
+  rename      Rename an existing container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images from local storage
+  run         Run a command in a new container
+  save        Save image(s) to an archive
+  search      Search registry for image
+  secret      Manage secrets
+  start       Start one or more containers
+  stats       Display a live stream of container resource usage statistics
+  stop        Stop one or more containers
+  system      Manage podman
+  tag         Add an additional name to a local image
+  top         Display the running processes of a container
+  unmount     Unmount working container's root filesystem
+  unpause     Unpause the processes in one or more containers
+  unshare     Run a command in a modified user namespace
+  untag       Remove a name from a local image
+  update      Update an existing container
+  version     Display the Podman version information
+  volume      Manage volumes
+  wait        Block on one or more containers
+
+Options:
+      --cgroup-manager string       Cgroup manager to use ("cgroupfs"|"systemd") (default "systemd")
+      --conmon string               Path of the conmon binary
+  -c, --connection string           Connection to use for remote Podman service
+      --events-backend string       Events backend to use ("file"|"journald"|"none") (default "journald")
+      --help                        Help for podman
+      --hooks-dir strings           Set the OCI hooks directory path (may be set multiple times) (default [/usr/share/containers/oci/hooks.d])
+      --identity string             path to SSH identity file, (CONTAINER_SSHKEY)
+      --imagestore string           Path to the 'image store', different from 'graph root', use this to split storing the image into a separate 'image store', see 'man containers-storage.conf' for details
+      --log-level string            Log messages above specified level (trace, debug, info, warn, warning, error, fatal, panic) (default "warn")
+      --module strings              Load the containers.conf(5) module
+      --network-cmd-path string     Path to the command for configuring the network
+      --network-config-dir string   Path of the configuration directory for networks
+      --out string                  Send output (stdout) from podman to a file
+  -r, --remote                      Access remote Podman service
+      --root string                 Path to the graph root directory where images, containers, etc. are stored
+      --runroot string              Path to the 'run directory' where all state information is stored
+      --runtime string              Path to the OCI-compatible binary used to run containers. (default "crun")
+      --runtime-flag stringArray    add global flags for the container runtime
+      --ssh string                  define the ssh mode (default "golang")
+      --storage-driver string       Select which storage driver is used to manage storage of images and containers
+      --storage-opt stringArray     Used to pass an option to the storage driver
+      --syslog                      Output logging information to syslog as well as the console (default false)
+      --tmpdir string               Path to the tmp directory for libpod state content.
+                                    
+                                    Note: use the environment variable 'TMPDIR' to change the temporary storage location for container images, '/var/tmp'.
+                                     (default "/run/user/1000/libpod/tmp")
+      --transient-store             Enable transient container storage
+      --url string                  URL to access Podman service (CONTAINER_HOST) (default "unix:///run/user/1000/podman/podman.sock")
+  -v, --version                     version for podman
+      --volumepath string           Path to the volume directory in which volume data is stored
+[?2004h~/container-exercises/container-start > podman run --help
+[?2004lRun a command in a new container
+
+Description:
+  Runs a command in a new container from the given image
+
+Usage:
+  podman run [options] IMAGE [COMMAND [ARG...]]
+
+Examples:
+  podman run imageID ls -alF /etc
+  podman run --network=host imageID dnf -y install java
+  podman run --volume /var/hostdir:/var/ctrdir -i -t fedora /bin/bash
+
+Options:
+      --add-host strings                         Add a custom host-to-IP mapping (host:ip) (default [])
+      --annotation strings                       Add annotations to container (key=value)
+      --arch ARCH                                use ARCH instead of the architecture of the machine for choosing images
+  -a, --attach strings                           Attach to STDIN, STDOUT or STDERR
+      --authfile string                          Path of the authentication file. Use REGISTRY_AUTH_FILE environment variable to override
+      --blkio-weight string                      Block IO weight (relative weight) accepts a weight value between 10 and 1000.
+      --blkio-weight-device DEVICE_NAME:WEIGHT   Block IO weight (relative device weight, format: DEVICE_NAME:WEIGHT)
+      --cap-add strings                          Add capabilities to the container
+      --cap-drop strings                         Drop capabilities from the container
+      --cgroup-conf strings                      Configure cgroup v2 (key=value)
+      --cgroup-parent string                     Optional parent cgroup for the container
+      --cgroupns string                          cgroup namespace to use
+      --cgroups string                           control container cgroup configuration ("enabled"|"disabled"|"no-conmon"|"split") (default "enabled")
+      --chrootdirs strings                       Chroot directories inside the container
+      --cidfile string                           Write the container ID to the file
+      --conmon-pidfile string                    Path to the file that will receive the PID of conmon
+      --cpu-period uint                          Limit the CPU CFS (Completely Fair Scheduler) period
+      --cpu-quota int                            Limit the CPU CFS (Completely Fair Scheduler) quota
+      --cpu-rt-period uint                       Limit the CPU real-time period in microseconds
+      --cpu-rt-runtime int                       Limit the CPU real-time runtime in microseconds
+  -c, --cpu-shares uint                          CPU shares (relative weight)
+      --cpus float                               Number of CPUs. The default is 0.000 which means no limit
+      --cpuset-cpus string                       CPUs in which to allow execution (0-3, 0,1)
+      --cpuset-mems string                       Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.
+      --decryption-key strings                   Key needed to decrypt the image (e.g. /path/to/key.pem)
+  -d, --detach                                   Run container in background and print container ID
+      --detach-keys [a-Z]                        Override the key sequence for detaching a container. Format is a single character [a-Z] or a comma separated sequence of `ctrl-<value>`, where `<value>` is one of: `a-cf`, `@`, `^`, `[`, `\`, `]`, `^` or `_` (default "ctrl-p,ctrl-q")
+      --device strings                           Add a host device to the container
+      --device-cgroup-rule strings               Add a rule to the cgroup allowed devices list
+      --device-read-bps strings                  Limit read rate (bytes per second) from a device (e.g. --device-read-bps=/dev/sda:1mb)
+      --device-read-iops strings                 Limit read rate (IO per second) from a device (e.g. --device-read-iops=/dev/sda:1000)
+      --device-write-bps strings                 Limit write rate (bytes per second) to a device (e.g. --device-write-bps=/dev/sda:1mb)
+      --device-write-iops strings                Limit write rate (IO per second) to a device (e.g. --device-write-iops=/dev/sda:1000)
+      --disable-content-trust                    This is a Docker specific option and is a NOOP
+      --dns strings                              Set custom DNS servers
+      --dns-option strings                       Set custom DNS options
+      --dns-search strings                       Set custom DNS search domains
+      --entrypoint string                        Overwrite the default ENTRYPOINT of the image
+  -e, --env stringArray                          Set environment variables in container (default [PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin])
+      --env-file strings                         Read in a file of environment variables
+      --env-host                                 Use all current host environment variables in container
+      --env-merge stringArray                    Preprocess environment variables from image before injecting them into the container
+      --expose strings                           Expose a port or a range of ports
+      --gidmap strings                           GID map to use for the user namespace
+      --group-add strings                        Add additional groups to the primary container process. 'keep-groups' allows container processes to use supplementary groups.
+      --group-entry string                       Entry to write to /etc/group
+      --health-cmd string                        set a healthcheck command for the container ('none' disables the existing healthcheck)
+      --health-interval string                   set an interval for the healthcheck (a value of disable results in no automatic timer setup) (default "30s")
+      --health-on-failure string                 action to take once the container turns unhealthy (default "none")
+      --health-retries uint                      the number of retries allowed before a healthcheck is considered to be unhealthy (default 3)
+      --health-start-period string               the initialization time needed for a container to bootstrap (default "0s")
+      --health-startup-cmd string                Set a startup healthcheck command for the container
+      --health-startup-interval string           Set an interval for the startup healthcheck (default "30s")
+      --health-startup-retries uint              Set the maximum number of retries before the startup healthcheck will restart the container
+      --health-startup-success uint              Set the number of consecutive successes before the startup healthcheck is marked as successful and the normal healthcheck begins (0 indicates any success will start the regular healthcheck)
+      --health-startup-timeout string            Set the maximum amount of time that the startup healthcheck may take before it is considered failed (default "30s")
+      --health-timeout string                    the maximum time allowed to complete the healthcheck before an interval is considered failed (default "30s")
+      --help                                     
+  -h, --hostname string                          Set container hostname
+      --hostuser strings                         Host user account to add to /etc/passwd within container
+      --http-proxy                               Set proxy environment variables in the container based on the host proxy vars (default true)
+      --image-volume string                      Tells podman how to handle the builtin image volumes ("bind"|"tmpfs"|"ignore") (default "bind")
+      --init                                     Run an init binary inside the container that forwards signals and reaps processes
+      --init-path string                         Path to the container-init binary
+  -i, --interactive                              Keep STDIN open even if not attached
+      --ip string                                Specify a static IPv4 address for the container
+      --ip6 string                               Specify a static IPv6 address for the container
+      --ipc string                               IPC namespace to use
+  -l, --label stringArray                        Set metadata on container
+      --label-file strings                       Read in a line delimited file of labels
+      --log-driver string                        Logging driver for the container (default "journald")
+      --log-opt strings                          Logging driver options
+      --mac-address string                       Container MAC address (e.g. 92:d0:c6:0a:29:33)
+  -m, --memory <number>[<unit>]                  Memory limit (format: <number>[<unit>], where unit = b (bytes), k (kibibytes), m (mebibytes), or g (gibibytes))
+      --memory-reservation <number>[<unit>]      Memory soft limit (format: <number>[<unit>], where unit = b (bytes), k (kibibytes), m (mebibytes), or g (gibibytes))
+      --memory-swap string                       Swap limit equal to memory plus swap: '-1' to enable unlimited swap
+      --memory-swappiness int                    Tune container memory swappiness (0 to 100, or -1 for system default) (default -1)
+      --mount stringArray                        Attach a filesystem mount to the container
+      --name string                              Assign a name to the container
+      --network stringArray                      Connect a container to a network
+      --network-alias strings                    Add network-scoped alias for the container
+      --no-healthcheck                           Disable healthchecks on container
+      --no-hosts                                 Do not create /etc/hosts within the container, instead use the version from the image
+      --oom-kill-disable                         Disable OOM Killer
+      --oom-score-adj int                        Tune the host's OOM preferences (-1000 to 1000)
+      --os OS                                    use OS instead of the running OS for choosing images
+      --passwd                                   add entries to /etc/passwd and /etc/group (default true)
+      --passwd-entry string                      Entry to write to /etc/passwd
+      --personality string                       Configure execution domain using personality (e.g., LINUX/LINUX32)
+      --pid string                               PID namespace to use
+      --pidfile string                           Write the container process ID to the file
+      --pids-limit int                           Tune container pids limit (set -1 for unlimited) (default 2048)
+      --platform string                          Specify the platform for selecting the image.  (Conflicts with --arch and --os)
+      --pod string                               Run container in an existing pod
+      --pod-id-file string                       Read the pod ID from the file
+      --preserve-fds uint                        Pass a number of additional file descriptors into the container
+      --privileged                               Give extended privileges to container
+  -p, --publish strings                          Publish a container's port, or a range of ports, to the host (default [])
+  -P, --publish-all                              Publish all exposed ports to random ports on the host interface
+      --pull string                              Pull image policy ("always"|"missing"|"never"|"newer") (default "missing")
+  -q, --quiet                                    Suppress output information when pulling images
+      --rdt-class string                         Class of Service (COS) that the container should be assigned to
+      --read-only                                Make containers root filesystem read-only
+      --read-only-tmpfs                          When running --read-only containers mount read-write tmpfs on /dev, /dev/shm, /run, /tmp and /var/tmp (default true)
+      --replace                                  If a container with the same name exists, replace it
+      --requires strings                         Add one or more requirement containers that must be started before this container will start
+      --restart string                           Restart policy to apply when a container exits ("always"|"no"|"never"|"on-failure"|"unless-stopped")
+      --rm                                       Remove container and any anonymous unnamed volume associated with the container after exit
+      --rmi                                      Remove image unless used by other containers, implies --rm
+      --rootfs                                   The first argument is not an image but the rootfs to the exploded container
+      --sdnotify string                          control sd-notify behavior ("container"|"conmon"|"ignore") (default "container")
+      --seccomp-policy string                    Policy for selecting a seccomp profile (experimental) (default "default")
+      --secret stringArray                       Add secret to container
+      --security-opt stringArray                 Security Options
+      --shm-size <number>[<unit>]                Size of /dev/shm (format: <number>[<unit>], where unit = b (bytes), k (kibibytes), m (mebibytes), or g (gibibytes)) (default "65536k")
+      --shm-size-systemd <number>[<unit>]        Size of systemd specific tmpfs mounts (/run, /run/lock) (format: <number>[<unit>], where unit = b (bytes), k (kibibytes), m (mebibytes), or g (gibibytes))
+      --sig-proxy                                Proxy received signals to the process (default true)
+      --stop-signal string                       Signal to stop a container. Default is SIGTERM
+      --stop-timeout uint                        Timeout (in seconds) that containers stopped by user command have to exit. If exceeded, the container will be forcibly stopped via SIGKILL. (default 10)
+      --subgidname string                        Name of range listed in /etc/subgid for use in user namespace
+      --subuidname string                        Name of range listed in /etc/subuid for use in user namespace
+      --sysctl strings                           Sysctl options
+      --systemd string                           Run container in systemd mode ("true"|"false"|"always") (default "true")
+      --timeout uint                             Maximum length of time a container is allowed to run. The container will be killed automatically after the time expires.
+      --tls-verify                               Require HTTPS and verify certificates when contacting registries for pulling images
+      --tmpfs tmpfs                              Mount a temporary filesystem (tmpfs) into a container
+  -t, --tty                                      Allocate a pseudo-TTY for container
+      --tz string                                Set timezone in container
+      --uidmap strings                           UID map to use for the user namespace
+      --ulimit strings                           Ulimit options
+      --umask string                             Set umask in container (default "0022")
+      --unsetenv stringArray                     Unset environment default variables in container
+      --unsetenv-all                             Unset all default environment variables in container
+  -u, --user string                              Username or UID (format: <name|uid>[:<group|gid>])
+      --userns string                            User namespace to use
+      --uts string                               UTS namespace to use
+      --variant VARIANT                          Use VARIANT instead of the running architecture variant for choosing images
+  -v, --volume stringArray                       Bind mount a volume into the container
+      --volumes-from stringArray                 Mount volumes from the specified container(s)
+  -w, --workdir string                           Working directory inside the container
+
+[?2004h~/container-exercises/container-start > podman run -it busybox
+[?2004lResolved "busybox" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
+Trying to pull docker.io/library/busybox:latest...
+Getting image source signatures
+Copying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB (skipped: 0.0b = 0.00%)
+Copying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+[2A[JCopying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB (skipped: 0.0b = 0.00%)
+Copying blob a46fbb00284b [========================>-------------] 1.4MiB / 2.1MiB | 27.1 MiB/s
+[2A[JCopying blob a46fbb00284b done   | 
+[1A[JCopying blob a46fbb00284b done   | 
+[1A[JCopying blob a46fbb00284b done   | 
+[1A[JCopying blob a46fbb00284b done   | 
+Copying config 27a71e19c9 done   | 
+[1A[JCopying config 27a71e19c9 done   | 
+[1A[JCopying config 27a71e19c9 done   | 
+Writing manifest to image destination
+/ # ls
+[1;34mbin[m    [1;34mdev[m    [1;34metc[m    [1;34mhome[m   [1;34mlib[m    [1;36mlib64[m  [1;34mproc[m   [1;34mroot[m   [1;34mrun[m    [1;34msys[m    [1;34mtmp[m    [1;34musr[m    [1;34mvar[m
+/ # ls -i /bin
+1570558 [1;32m[[m                  1570558 [1;32mfsck[m               1570558 [1;32mmknod[m              1570558 [1;32mshuf[m
+1570558 [1;32m[[[m                 1570558 [1;32mfsck.minix[m         1570558 [1;32mmkpasswd[m           1570558 [1;32mslattach[m
+1570558 [1;32macpid[m              1570558 [1;32mfsfreeze[m           1570558 [1;32mmkswap[m             1570558 [1;32msleep[m
+1570558 [1;32madd-shell[m          1570558 [1;32mfstrim[m             1570558 [1;32mmktemp[m             1570558 [1;32msmemcap[m
+1570558 [1;32maddgroup[m           1570558 [1;32mfsync[m              1570558 [1;32mmodinfo[m            1570558 [1;32msoftlimit[m
+1570558 [1;32madduser[m            1570558 [1;32mftpd[m               1570558 [1;32mmodprobe[m           1570558 [1;32msort[m
+1570558 [1;32madjtimex[m           1570558 [1;32mftpget[m             1570558 [1;32mmore[m               1570558 [1;32msplit[m
+1570558 [1;32mar[m                 1570558 [1;32mftpput[m             1570558 [1;32mmount[m              1570558 [1;32mssl_client[m
+1570558 [1;32march[m               1570558 [1;32mfuser[m              1570558 [1;32mmountpoint[m         1570558 [1;32mstart-stop-daemon[m
+1570558 [1;32marp[m                1570559 [1;32mgetconf[m            1570558 [1;32mmpstat[m             1570558 [1;32mstat[m
+1570558 [1;32marping[m             1570558 [1;32mgetfattr[m           1570558 [1;32mmt[m                 1570558 [1;32mstrings[m
+1570558 [1;32mascii[m              1570558 [1;32mgetopt[m             1570558 [1;32mmv[m                 1570558 [1;32mstty[m
+1570558 [1;32mash[m                1570558 [1;32mgetty[m              1570558 [1;32mnameif[m             1570558 [1;32msu[m
+1570558 [1;32mawk[m                1570558 [1;32mgrep[m               1570558 [1;32mnanddump[m           1570558 [1;32msulogin[m
+1570558 [1;32mbase32[m             1570558 [1;32mgroups[m             1570558 [1;32mnandwrite[m          1570558 [1;32msum[m
+1570558 [1;32mbase64[m             1570558 [1;32mgunzip[m             1570558 [1;32mnbd-client[m         1570558 [1;32msv[m
+1570558 [1;32mbasename[m           1570558 [1;32mgzip[m               1570558 [1;32mnc[m                 1570558 [1;32msvc[m
+1570558 [1;32mbc[m                 1570558 [1;32mhalt[m               1570558 [1;32mnetstat[m            1570558 [1;32msvlogd[m
+1570558 [1;32mbeep[m               1570558 [1;32mhd[m                 1570558 [1;32mnice[m               1570558 [1;32msvok[m
+1570558 [1;32mblkdiscard[m         1570558 [1;32mhdparm[m             1570558 [1;32mnl[m                 1570558 [1;32mswapoff[m
+1570558 [1;32mblkid[m              1570558 [1;32mhead[m               1570558 [1;32mnmeter[m             1570558 [1;32mswapon[m
+1570558 [1;32mblockdev[m           1570558 [1;32mhexdump[m            1570558 [1;32mnohup[m              1570558 [1;32mswitch_root[m
+1570558 [1;32mbootchartd[m         1570558 [1;32mhexedit[m            1570558 [1;32mnologin[m            1570558 [1;32msync[m
+1570558 [1;32mbrctl[m              1570558 [1;32mhostid[m             1570558 [1;32mnproc[m              1570558 [1;32msysctl[m
+1570558 [1;32mbunzip2[m            1570558 [1;32mhostname[m           1570558 [1;32mnsenter[m            1570558 [1;32msyslogd[m
+1570558 [1;32mbusybox[m            1570558 [1;32mhttpd[m              1570558 [1;32mnslookup[m           1570558 [1;32mtac[m
+1570558 [1;32mbzcat[m              1570558 [1;32mhush[m               1570558 [1;32mntpd[m               1570558 [1;32mtail[m
+1570558 [1;32mbzip2[m              1570558 [1;32mhwclock[m            1570558 [1;32mod[m                 1570558 [1;32mtar[m
+1570558 [1;32mcal[m                1570558 [1;32mi2cdetect[m          1570558 [1;32mopenvt[m             1570558 [1;32mtaskset[m
+1570558 [1;32mcat[m                1570558 [1;32mi2cdump[m            1570558 [1;32mpartprobe[m          1570558 [1;32mtc[m
+1570558 [1;32mchat[m               1570558 [1;32mi2cget[m             1570558 [1;32mpasswd[m             1570558 [1;32mtcpsvd[m
+1570558 [1;32mchattr[m             1570558 [1;32mi2cset[m             1570558 [1;32mpaste[m              1570558 [1;32mtee[m
+1570558 [1;32mchgrp[m              1570558 [1;32mi2ctransfer[m        1570558 [1;32mpatch[m              1570558 [1;32mtelnet[m
+1570558 [1;32mchmod[m              1570558 [1;32mid[m                 1570558 [1;32mpgrep[m              1570558 [1;32mtelnetd[m
+1570558 [1;32mchown[m              1570558 [1;32mifconfig[m           1570558 [1;32mpidof[m              1570558 [1;32mtest[m
+1570558 [1;32mchpasswd[m           1570558 [1;32mifdown[m             1570558 [1;32mping[m               1570558 [1;32mtftp[m
+1570558 [1;32mchpst[m              1570558 [1;32mifenslave[m          1570558 [1;32mping6[m              1570558 [1;32mtftpd[m
+1570558 [1;32mchroot[m             1570558 [1;32mifplugd[m            1570558 [1;32mpipe_progress[m      1570558 [1;32mtime[m
+1570558 [1;32mchrt[m               1570558 [1;32mifup[m               1570558 [1;32mpivot_root[m         1570558 [1;32mtimeout[m
+1570558 [1;32mchvt[m               1570558 [1;32minetd[m              1570558 [1;32mpkill[m              1570558 [1;32mtop[m
+1570558 [1;32mcksum[m              1570558 [1;32minit[m               1570558 [1;32mpmap[m               1570558 [1;32mtouch[m
+1570558 [1;32mclear[m              1570558 [1;32minsmod[m             1570558 [1;32mpopmaildir[m         1570558 [1;32mtr[m
+1570558 [1;32mcmp[m                1570558 [1;32minstall[m            1570558 [1;32mpoweroff[m           1570558 [1;32mtraceroute[m
+1570558 [1;32mcomm[m               1570558 [1;32mionice[m             1570558 [1;32mpowertop[m           1570558 [1;32mtraceroute6[m
+1570558 [1;32mconspy[m             1570558 [1;32miostat[m             1570558 [1;32mprintenv[m           1570558 [1;32mtree[m
+1570558 [1;32mcp[m                 1570558 [1;32mip[m                 1570558 [1;32mprintf[m             1570558 [1;32mtrue[m
+1570558 [1;32mcpio[m               1570558 [1;32mipaddr[m             1570558 [1;32mps[m                 1570558 [1;32mtruncate[m
+1570558 [1;32mcrc32[m              1570558 [1;32mipcalc[m             1570558 [1;32mpscan[m              1570558 [1;32mts[m
+1570558 [1;32mcrond[m              1570558 [1;32mipcrm[m              1570558 [1;32mpstree[m             1570558 [1;32mtsort[m
+1570558 [1;32mcrontab[m            1570558 [1;32mipcs[m               1570558 [1;32mpwd[m                1570558 [1;32mtty[m
+1570558 [1;32mcryptpw[m            1570558 [1;32miplink[m             1570558 [1;32mpwdx[m               1570558 [1;32mttysize[m
+1570558 [1;32mcttyhack[m           1570558 [1;32mipneigh[m            1570558 [1;32mraidautorun[m        1570558 [1;32mtunctl[m
+1570558 [1;32mcut[m                1570558 [1;32miproute[m            1570558 [1;32mrdate[m              1570558 [1;32mubiattach[m
+1570558 [1;32mdate[m               1570558 [1;32miprule[m             1570558 [1;32mrdev[m               1570558 [1;32mubidetach[m
+1570558 [1;32mdc[m                 1570558 [1;32miptunnel[m           1570558 [1;32mreadahead[m          1570558 [1;32mubimkvol[m
+1570558 [1;32mdd[m                 1570558 [1;32mkbd_mode[m           1570558 [1;32mreadlink[m           1570558 [1;32mubirename[m
+1570558 [1;32mdeallocvt[m          1570558 [1;32mkill[m               1570558 [1;32mreadprofile[m        1570558 [1;32mubirmvol[m
+1570558 [1;32mdelgroup[m           1570558 [1;32mkillall[m            1570558 [1;32mrealpath[m           1570558 [1;32mubirsvol[m
+1570558 [1;32mdeluser[m            1570558 [1;32mkillall5[m           1570558 [1;32mreboot[m             1570558 [1;32mubiupdatevol[m
+1570558 [1;32mdepmod[m             1570558 [1;32mklogd[m              1570558 [1;32mreformime[m          1570558 [1;32mudhcpc[m
+1570558 [1;32mdevmem[m             1570558 [1;32mlast[m               1570558 [1;32mremove-shell[m       1570558 [1;32mudhcpc6[m
+1570558 [1;32mdf[m                 1570558 [1;32mless[m               1570558 [1;32mrenice[m             1570558 [1;32mudhcpd[m
+1570558 [1;32mdhcprelay[m          1570558 [1;32mlink[m               1570558 [1;32mreset[m              1570558 [1;32mudpsvd[m
+1570558 [1;32mdiff[m               1570558 [1;32mlinux32[m            1570558 [1;32mresize[m             1570558 [1;32muevent[m
+1570558 [1;32mdirname[m            1570558 [1;32mlinux64[m            1570558 [1;32mresume[m             1570558 [1;32mumount[m
+1570558 [1;32mdmesg[m              1570558 [1;32mlinuxrc[m            1570558 [1;32mrev[m                1570558 [1;32muname[m
+1570558 [1;32mdnsd[m               1570558 [1;32mln[m                 1570558 [1;32mrm[m                 1570558 [1;32munexpand[m
+1570558 [1;32mdnsdomainname[m      1570558 [1;32mloadfont[m           1570558 [1;32mrmdir[m              1570558 [1;32muniq[m
+1570558 [1;32mdos2unix[m           1570558 [1;32mloadkmap[m           1570558 [1;32mrmmod[m              1570558 [1;32munix2dos[m
+1570558 [1;32mdpkg[m               1570558 [1;32mlogger[m             1570558 [1;32mroute[m              1570558 [1;32munlink[m
+1570558 [1;32mdpkg-deb[m           1570558 [1;32mlogin[m              1570558 [1;32mrpm[m                1570558 [1;32munlzma[m
+1570558 [1;32mdu[m                 1570558 [1;32mlogname[m            1570558 [1;32mrpm2cpio[m           1570558 [1;32munshare[m
+1570558 [1;32mdumpkmap[m           1570558 [1;32mlogread[m            1570558 [1;32mrtcwake[m            1570558 [1;32munxz[m
+1570558 [1;32mdumpleases[m         1570558 [1;32mlosetup[m            1570558 [1;32mrun-init[m           1570558 [1;32munzip[m
+1570558 [1;32mecho[m               1570558 [1;32mlpd[m                1570558 [1;32mrun-parts[m          1570558 [1;32muptime[m
+1570558 [1;32med[m                 1570558 [1;32mlpq[m                1570558 [1;32mrunlevel[m           1570558 [1;32musers[m
+1570558 [1;32megrep[m              1570558 [1;32mlpr[m                1570558 [1;32mrunsv[m              1570558 [1;32musleep[m
+1570558 [1;32meject[m              1570558 [1;32mls[m                 1570558 [1;32mrunsvdir[m           1570558 [1;32muudecode[m
+1570558 [1;32menv[m                1570558 [1;32mlsattr[m             1570558 [1;32mrx[m                 1570558 [1;32muuencode[m
+1570558 [1;32menvdir[m             1570558 [1;32mlsmod[m              1570558 [1;32mscript[m             1570558 [1;32mvconfig[m
+1570558 [1;32menvuidgid[m          1570558 [1;32mlsof[m               1570558 [1;32mscriptreplay[m       1570558 [1;32mvi[m
+1570558 [1;32mether-wake[m         1570558 [1;32mlspci[m              1570558 [1;32msed[m                1570558 [1;32mvlock[m
+1570558 [1;32mexpand[m             1570558 [1;32mlsscsi[m             1570558 [1;32mseedrng[m            1570558 [1;32mvolname[m
+1570558 [1;32mexpr[m               1570558 [1;32mlsusb[m              1570558 [1;32msendmail[m           1570558 [1;32mw[m
+1570558 [1;32mfactor[m             1570558 [1;32mlzcat[m              1570558 [1;32mseq[m                1570558 [1;32mwall[m
+1570558 [1;32mfakeidentd[m         1570558 [1;32mlzma[m               1570558 [1;32msetarch[m            1570558 [1;32mwatch[m
+1570558 [1;32mfallocate[m          1570558 [1;32mlzop[m               1570558 [1;32msetconsole[m         1570558 [1;32mwatchdog[m
+1570558 [1;32mfalse[m              1570558 [1;32mmakedevs[m           1570558 [1;32msetfattr[m           1570558 [1;32mwc[m
+1570558 [1;32mfatattr[m            1570558 [1;32mmakemime[m           1570558 [1;32msetfont[m            1570558 [1;32mwget[m
+1570558 [1;32mfbset[m              1570558 [1;32mman[m                1570558 [1;32msetkeycodes[m        1570558 [1;32mwhich[m
+1570558 [1;32mfbsplash[m           1570558 [1;32mmd5sum[m             1570558 [1;32msetlogcons[m         1570558 [1;32mwho[m
+1570558 [1;32mfdflush[m            1570558 [1;32mmdev[m               1570558 [1;32msetpriv[m            1570558 [1;32mwhoami[m
+1570558 [1;32mfdformat[m           1570558 [1;32mmesg[m               1570558 [1;32msetserial[m          1570558 [1;32mwhois[m
+1570558 [1;32mfdisk[m              1570558 [1;32mmicrocom[m           1570558 [1;32msetsid[m             1570558 [1;32mxargs[m
+1570558 [1;32mfgconsole[m          1570558 [1;32mmim[m                1570558 [1;32msetuidgid[m          1570558 [1;32mxxd[m
+1570558 [1;32mfgrep[m              1570558 [1;32mmkdir[m              1570558 [1;32msh[m                 1570558 [1;32mxz[m
+1570558 [1;32mfind[m               1570558 [1;32mmkdosfs[m            1570558 [1;32msha1sum[m            1570558 [1;32mxzcat[m
+1570558 [1;32mfindfs[m             1570558 [1;32mmke2fs[m             1570558 [1;32msha256sum[m          1570558 [1;32myes[m
+1570558 [1;32mflock[m              1570558 [1;32mmkfifo[m             1570558 [1;32msha3sum[m            1570558 [1;32mzcat[m
+1570558 [1;32mfold[m               1570558 [1;32mmkfs.ext2[m          1570558 [1;32msha512sum[m          1570558 [1;32mzcip[m
+1570558 [1;32mfree[m               1570558 [1;32mmkfs.minix[m         1570558 [1;32mshowkey[m
+1570558 [1;32mfreeramdisk[m        1570558 [1;32mmkfs.vfat[m          1570558 [1;32mshred[m
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: tap0: <BROADCAST,UP,LOWER_UP> mtu 65520 qdisc pfifo_fast qlen 1000
+    link/ether 36:ec:e0:78:47:19 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.100/24 brd 10.0.2.255 scope global tap0
+       valid_lft forever preferred_lft forever
+    inet6 fd00::34ec:e0ff:fe78:4719/64 scope global dynamic flags 100 
+       valid_lft 86368sec preferred_lft 14368sec
+    inet6 fe80::34ec:e0ff:fe78:4719/64 scope link 
+       valid_lft forever preferred_lft forever
+/ # wget https://google.de
+Connecting to google.de (172.217.16.131:443)
+wget: note: TLS certificate validation not implemented
+Connecting to www.google.de (172.217.16.131:443)
+saving to 'index.html'
+index.html           100% |*****************************************************************************| 20399  0:00:00 ETA
+'index.html' saved
+/ # ps
+PID   USER     TIME  COMMAND
+    1 root      0:00 sh
+   10 root      0:00 ps
+/ # ps -eaf
+PID   USER     TIME  COMMAND
+    1 root      0:00 sh
+   11 root      0:00 ps -eaf
+/ # ls
+[1;34mbin[m         [1;34metc[m         [0;0mindex.html[m  [1;36mlib64[m       [1;34mroot[m        [1;34msys[m         [1;34musr[m
+[1;34mdev[m         [1;34mhome[m        [1;34mlib[m         [1;34mproc[m        [1;34mrun[m         [1;34mtmp[m         [1;34mvar[m
+/ # head ind/ # head index.html [J
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="de"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="DzsV-eNiETHOnUZeZ83vLw">(function(){var _g={kEI:'U9IvZ5jAFcGli-gP1YPPkAk',kEXPI:'0,3700340,1044,507102,31559,2872,2891,43028,30022,16105,239271,97370,8155,8861,14490,22435,9779,62658,76208,15816,1804,14360,12734,8175,11813,1427,87,118,29279,5240779,395,8832117,1517,3,126,45,1,5,1,21,4,29,17,19,2,4,1,7,10,12,2,1,6,1,27979199,16672,2169859,23029351,12799,19298,92912,10894,15164,8181,5928,22919,41670,582,6754,2639,21240,9140,767,3831,328,4460,1766,23380,1,6,10237,687,6591,23262,1342,13708,5647,2557,6087,1343,12132,2245,143,1381,1907,13365,16870,10670,12788,594,96,1708,933,381,4841,2942,44,4387,967,41,3286,2,5520,3073,865,893,1,1616,2745,561,617,1922,4,644,1,31,2706,88,478,202,987,445,1,7581,1278,23,950,972,66,1872,3836,44,288,185,884,9,4377,281,255,721,3,390,2035,60,17,3,112,895,3,7,147,1534,36,3,1748,515,353,1401,1380,474,779,29,181,533,128,1778,854,2,586,518,2035,622,4,2,50,69,634,419,900,2,372,1338,553,210,1046,537,103,3,383,369,12,294,1266,68,183,2,552,515,130,241,514,95,33,368,218,371,61,633,12,306,109,536,100,31,1200,145,53,1733,1271,5,4,4,4,350,233,100,539,1537,348,281,181,420,751,2079,540,333,181,62,418,122,252,303,2041,26,11,10,955,984,41,1251,204,1785,1292,29,4728,2,3,2,32,4,21402258,4,4275,3,9009,7988,18,587,1417,1478,877,3554,2245,1366',kBL:'uzrZ',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='de';})();(function(){
+var h=this||self;function l(){return window.google!==void 0&&window.google.kOPI!==void 0&&window.google.kOPI!==0?window.google.kOPI:null};var m,n=[];function p(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||m}function q(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function r(a){/^http:/i.test(a)&&window.location.protocol==="https:"&&(google.ml&&google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
+function t(a,b,c,d,k){var e="";b.search("&ei=")===-1&&(e="&ei="+p(d),b.search("&lei=")===-1&&(d=q(d))&&(e+="&lei="+d));d="";var g=b.search("&cshid=")===-1&&a!=="slh",f=[];f.push(["zx",Date.now().toString()]);h._cshid&&g&&f.push(["cshid",h._cshid]);c=c();c!=null&&f.push(["opi",c.toString()]);for(c=0;c<f.length;c++){if(c===0||c>0)d+="&";d+=f[c][0]+"="+f[c][1]}return"/"+(k||"gen_204")+"?atyp=i&ct="+String(a)+"&cad="+(b+e+d)};m=google.kEI;google.getEI=p;google.getLEI=q;google.ml=function(){return null};google.log=function(a,b,c,d,k,e){e=e===void 0?l:e;c||(c=t(a,b,e,d,k));if(c=r(c)){a=new Image;var g=n.length;n[g]=a;a.onerror=a.onload=a.onabort=function(){delete n[g]};a.src=c}};google.logUrl=function(a,b){b=b===void 0?l:b;return t("",a,b)};}).call(this);(function(){google.y={};google.sy=[];var d;(d=google).x||(d.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1});var e;(e=google).sx||(e.sx=function(a){google.sy.push(a)});google.lm=[];var f;(f=google).plm||(f.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var g;(g=google).load||(g.load=function(a,b,c){google.lq.push([[a],b,c])});var h;(h=google).loadAll||(h.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var k;(k=google).lx||(k.lx=function(){});var l=[],m;(m=google).fce||(m.fce=function(a,b,c,n){l.push([a,b,c,n])});google.qce=l;}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px arial,sans-serif}.gsfs{font:17px arial,sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#000}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#000;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px arial,sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce="DzsV-eNiETHOnUZeZ83vLw">(function(){window.google.erd={jsr:1,bv:2113,de:true,dpf:'IyZ87q8LBnmnyNFk-GAsRYiV5MSMuw2Vl2zMIyxNNh4'};
+var g=this||self;var k,l=(k=g.mei)!=null?k:1,n,p=(n=g.sdo)!=null?n:!0,q=0,r,t=google.erd,v=t.jsr;google.ml=function(a,b,d,m,e){e=e===void 0?2:e;b&&(r=a&&a.message);d===void 0&&(d={});d.cad="ple_"+google.ple+".aple_"+google.aple;if(google.dl)return google.dl(a,e,d,!0),null;b=d;if(v<0){window.console&&console.error(a,b);if(v===-2)throw a;b=!1}else b=!a||!a.message||a.message==="Error loading script"||q>=l&&!m?!1:!0;if(!b)return null;q++;d=d||{};b=encodeURIComponent;var c="/gen_204?atyp=i&ei="+b(google.kEI);google.kEXPI&&(c+="&jexpid="+b(google.kEXPI));c+="&srcpg="+b(google.sn)+"&jsr="+b(t.jsr)+
+"&bver="+b(t.bv);t.dpf&&(c+="&dpf="+b(t.dpf));var f=a.lineNumber;f!==void 0&&(c+="&line="+f);var h=a.fileName;h&&(h.indexOf("-extension:/")>0&&(e=3),c+="&script="+b(h),f&&h===window.location.href&&(f=document.documentElement.outerHTML.split("\n")[f],c+="&cad="+b(f?f.substring(0,300):"No script found.")));google.ple&&google.ple===1&&(e=2);c+="&jsel="+e;for(var u in d)c+="&",c+=b(u),c+="=",c+=b(d[u]);c=c+"&emsg="+b(a.name+": "+a.message);c=c+"&jsst="+b(a.stack||"N/A");c.length>=12288&&(c=c.substr(0,12288));a=c;m||google.log(0,"",a);return a};window.onerror=function(a,b,d,m,e){r!==a&&(a=e instanceof Error?e:Error(a),d===void 0||"lineNumber"in a||(a.lineNumber=d),b===void 0||"fileName"in a||(a.fileName=b),google.ml(a,!1,void 0,!1,a.name==="SyntaxError"||a.message.substring(0,11)==="SyntaxError"||a.message.indexOf("Script error")!==-1?3:0));r=null;p&&q>=l&&(window.onerror=null)};})();</script></head><body bgcolor="#fff"><script nonce="DzsV-eNiETHOnUZeZ83vLw">(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n && window.n();if (document.images){new Image().src=src;}
+if (!iesg){document.f&&document.f.q.focus();document.gbqf&&document.gbqf.q.focus();}
+}
+})();</script><div id="mngb"><div id=gbar><nobr><b class=gb1>Suche</b> <a class=gb1 href="https://www.google.de/imghp?hl=de&tab=wi">Bilder</a> <a class=gb1 href="https://maps.google.de/maps?hl=de&tab=wl">Maps</a> <a class=gb1 href="https://play.google.com/?hl=de&tab=w8">Play</a> <a class=gb1 href="https://www.youtube.com/?tab=w1">YouTube</a> <a class=gb1 href="https://news.google.com/?tab=wn">News</a> <a class=gb1 href="https://mail.google.com/mail/?tab=wm">Gmail</a> <a class=gb1 href="https://drive.google.com/?tab=wo">Drive</a> <a class=gb1 style="text-decoration:none" href="https://www.google.de/intl/de/about/products?tab=wh"><u>Mehr</u> &raquo;</a></nobr></div><div id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span id=gbe></span><a href="http://www.google.de/history/optout?hl=de" class=gb4>Webprotokoll</a> | <a  href="/preferences?hl=de" class=gb4>Einstellungen</a> | <a target=_top id=gb_70 href="https://accounts.google.com/ServiceLogin?hl=de&passive=true&continue=https://www.google.de/&ec=GAZAAQ" class=gb4>Anmelden</a></nobr></div><div class=gbh style=left:0></div><div class=gbh style=right:0></div></div><center><br clear="all" id="lgpd"><div id="XjhHGf"><img alt="Google" height="92" src="/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png" style="padding:28px 0 14px" width="272" id="hplogo"><br><br></div><form action="/search" name="f"><table cellpadding="0" cellspacing="0"><tr valign="top"><td width="25%">&nbsp;</td><td align="center" nowrap=""><input name="ie" value="ISO-8859-1" type="hidden"><input value="de" name="hl" type="hidden"><input name="source" type="hidden" value="hp"><input name="biw" type="hidden"><input name="bih" type="hidden"><div class="ds" style="height:32px;margin:4px 0"><input class="lst" style="margin:0;padding:5px 8px 0 6px;vertical-align:top;color:#000" autocomplete="off" value="" title="Google Suche" maxlength="2048" name="q" size="57"></div><br style="line-height:0"><span class="ds"><span class="lsbb"><input class="lsb" value="Google Suche" name="btnG" type="submit"></span></span><span class="ds"><span class="lsbb"><input class="lsb" id="tsuid_1" value="Auf gut Glück!" name="btnI" type="submit"><script nonce="DzsV-eNiETHOnUZeZ83vLw">(function(){var id='tsuid_1';document.getElementById(id).onclick = function(){if (this.form.q.value){this.checked = 1;if (this.form.iflsig)this.form.iflsig.disabled = false;}
+/ # exit
+[?2004h~/container-exercises/container-start > podman ps
+[?2004lCONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+[?2004h~/container-exercises/container-start > podman ps -a
+[?2004lCONTAINER ID  IMAGE                             COMMAND     CREATED        STATUS                     PORTS       NAMES
+1212eb4a6dc1  docker.io/library/busybox:latest  sh          2 minutes ago  Exited (0) 17 seconds ago              mystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman start mystifying_zhukovsky 
+[?2004lmystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman ps -a
+[?2004lCONTAINER ID  IMAGE                             COMMAND     CREATED        STATUS         PORTS       NAMES
+1212eb4a6dc1  docker.io/library/busybox:latest  sh          3 minutes ago  Up 10 seconds              mystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman attach mystifying_zhukovsky 
+[?2004l/ # [J/ # [Jls
+[1;34mbin[m         [1;34metc[m         [0;0mindex.html[m  [1;36mlib64[m       [1;34mroot[m        [1;34msys[m         [1;34musr[m
+[1;34mdev[m         [1;34mhome[m        [1;34mlib[m         [1;34mproc[m        [1;34mrun[m         [1;34mtmp[m         [1;34mvar[m
+/ # exit
+
+[?2004h~/container-exercises/container-start > podman attach mystifying_zhukovsky ps -a[K
+[?2004lCONTAINER ID  IMAGE                             COMMAND     CREATED        STATUS                    PORTS       NAMES
+1212eb4a6dc1  docker.io/library/busybox:latest  sh          3 minutes ago  Exited (0) 7 seconds ago              mystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman ps -aattach mystifying_zhukovsky ps -a[Kstart mystifying_zhukovsky 
+[?2004lmystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman start mystifying_zhukovsky [1P[1P[1P[1@o[1@p
+[?2004l
+[33mWARN[0m[0010] StopSignal SIGTERM failed to stop container mystifying_zhukovsky in 10 seconds, resorting to SIGKILL 
+mystifying_zhukovsky
+[?2004h~/container-exercises/container-start > 
+[?2004l[?2004h~/container-exercises/container-start > podman -[Kps -a
+[?2004lCONTAINER ID  IMAGE                             COMMAND     CREATED        STATUS                       PORTS       NAMES
+1212eb4a6dc1  docker.io/library/busybox:latest  sh          4 minutes ago  Exited (137) 10 seconds ago              mystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman rm mystifying_zhukovsky 
+[?2004lmystifying_zhukovsky
+[?2004h~/container-exercises/container-start > podman rm mystifying_zhukovsky ps -a[K
+[?2004lCONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+[?2004h~/container-exercises/container-start > exit
+[?2004lexit
+
+Script done on 2024-11-07 10:11:42+01:00 [COMMAND_EXIT_CODE="0"]

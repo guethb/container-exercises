@@ -1,0 +1,288 @@
+Script started on 2024-11-07 10:51:35+01:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="125" LINES="24"]
+[?2004h~/container-exercises/nginx-network > podman build -t hello-world:nginx-1.0 .
+[?2004lSTEP 1/2: FROM docker.io/library/nginx:1.27
+Trying to pull docker.io/library/nginx:1.27...
+Getting image source signatures
+Copying blob 6476794e50f4 [--------------------------------------] 0.0b / 1.2KiB (skipped: 0.0b = 0.00%)
+Copying blob 6476794e50f4 [--------------------------------------] 0.0b / 1.2KiB | 0.0 b/s
+Copying blob a480a496ba95 [--------------------------------------] 0.0b / 27.8MiB (skipped: 0.0b = 0.00%)
+Copying blob a480a496ba95 [--------------------------------------] 0.0b / 27.8MiB | 0.0 b/s
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b (skipped: 0.0b = 0.00%)
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b | 0.0 b/s
+Copying blob f1091da6fd5c [--------------------------------------] 0.0b / 955.0b (skipped: 0.0b = 0.00%)
+Copying blob f1091da6fd5c [--------------------------------------] 0.0b / 955.0b | 0.0 b/s
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB (skipped: 0.0b = 0.00%)
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB | 0.0 b/s
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b (skipped: 0.0b = 0.00%)
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b | 0.0 b/s
+[12A[JCopying blob 6476794e50f4 [--------------------------------------] 0.0b / 1.2KiB (skipped: 0.0b = 0.00%)
+Copying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [--------------------------------------] 0.0b / 27.8MiB (skipped: 0.0b = 0.00%)
+Copying blob a480a496ba95 [--------------------------------------] 63.3KiB / 27.8MiB | 6.7 MiB/s
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b (skipped: 0.0b = 0.00%)
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b | 0.0 b/s
+Copying blob f1091da6fd5c [--------------------------------------] 0.0b / 955.0b (skipped: 0.0b = 0.00%)
+Copying blob f1091da6fd5c [--------------------------------------] 0.0b / 955.0b | 0.0 b/s
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB (skipped: 0.0b = 0.00%)
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB | 0.0 b/s
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b (skipped: 0.0b = 0.00%)
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b | 0.0 b/s
+Copying blob 70850b3ec6b2 [--------------------------------------] 0.0b / 1.4KiB (skipped: 0.0b = 0.00%)
+Copying blob 70850b3ec6b2 [--------------------------------------] 0.0b / 1.4KiB | 0.0 b/s
+[14A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [==>-----------------------------------] 2.5MiB / 27.8MiB | 42.6 MiB/s
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b | 0.0 b/s
+Copying blob f1091da6fd5c [--------------------------------------] 0.0b / 955.0b | 0.0 b/s
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB | 0.0 b/s
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b | 0.0 b/s
+Copying blob 70850b3ec6b2 [--------------------------------------] 0.0b / 1.4KiB (skipped: 0.0b = 0.00%)
+Copying blob 70850b3ec6b2 [--------------------------------------] 0.0b / 1.4KiB | 0.0 b/s
+[8A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [======>-------------------------------] 5.3MiB / 27.8MiB | 71.3 MiB/s
+Copying blob 11d6fdd0e8a7 [--------------------------------------] 0.0b / 629.0b | 0.0 b/s
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [--------------------------------------] 0.0b / 41.8MiB | 0.0 b/s
+Copying blob 40eea07b53d8 [--------------------------------------] 0.0b / 404.0b | 0.0 b/s
+Copying blob 70850b3ec6b2 [--------------------------------------] 0.0b / 1.4KiB | 0.0 b/s
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [===========>--------------------------] 8.7MiB / 27.8MiB | 38.2 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [--------------------------------------] 83.9KiB / 41.8MiB | 3.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [===============>----------------------] 11.6MiB / 27.8MiB | 37.3 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [--------------------------------------] 351.3KiB / 41.8MiB | 2.5 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [===================>------------------] 14.5MiB / 27.8MiB | 80.0 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [>-------------------------------------] 619.2KiB / 41.8MiB | 2.2 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [======================>---------------] 17.1MiB / 27.8MiB | 51.8 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [>-------------------------------------] 1.1MiB / 41.8MiB | 3.3 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [==========================>-----------] 19.9MiB / 27.8MiB | 44.8 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=>------------------------------------] 1.7MiB / 41.8MiB | 4.1 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [==============================>-------] 22.5MiB / 27.8MiB | 100.3 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=>------------------------------------] 2.2MiB / 41.8MiB | 4.3 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 [==================================>---] 25.2MiB / 27.8MiB | 50.6 MiB/s
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=>------------------------------------] 2.7MiB / 41.8MiB | 4.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [==>-----------------------------------] 3.3MiB / 41.8MiB | 4.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [===>----------------------------------] 4.1MiB / 41.8MiB | 5.5 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [====>---------------------------------] 5.0MiB / 41.8MiB | 8.8 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=====>--------------------------------] 6.5MiB / 41.8MiB | 15.5 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=======>------------------------------] 8.5MiB / 41.8MiB | 23.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=========>----------------------------] 11.4MiB / 41.8MiB | 76.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [============>-------------------------] 14.7MiB / 41.8MiB | 46.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [===============>----------------------] 17.7MiB / 41.8MiB | 27.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [==================>-------------------] 20.6MiB / 41.8MiB | 160.9 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [====================>-----------------] 23.6MiB / 41.8MiB | 38.8 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=======================>--------------] 26.5MiB / 41.8MiB | 37.6 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [==========================>-----------] 30.0MiB / 41.8MiB | 36.1 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [=============================>--------] 33.3MiB / 41.8MiB | 51.9 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [================================>-----] 36.3MiB / 41.8MiB | 150.4 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 [===================================>--] 39.6MiB / 41.8MiB | 143.1 MiB/s
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+[7A[JCopying blob 6476794e50f4 done   | 
+Copying blob a480a496ba95 done   | 
+Copying blob 11d6fdd0e8a7 done   | 
+Copying blob f1091da6fd5c done   | 
+Copying blob f3ace1b8ce45 done   | 
+Copying blob 40eea07b53d8 done   | 
+Copying blob 70850b3ec6b2 done   | 
+Copying config 3b25b682ea done   | 
+[1A[JCopying config 3b25b682ea done   | 
+[1A[JCopying config 3b25b682ea done   | 
+Writing manifest to image destination
+STEP 2/2: COPY static-content /usr/share/nginx/html
+COMMIT hello-world:nginx-1.0
+--> 13ddce70db34
+Successfully tagged localhost/hello-world:nginx-1.0
+13ddce70db342ed91abdafc2fee35b73f522e9a32d8ae76aa5c125a86ef8dacd
+[?2004h~/container-exercises/nginx-network > n[Kpodman run --name hello-world-nginx -d -p 800[K80:80 hello-word[Kld:b[Knginx-1.0
+[?2004l74422ef3a76244a37397eb51c0d11cfc6bb751fbe1b634776a598cd66c9d1cff
+[?2004h~/container-exercises/nginx-network > curl http://localhost:8080
+[?2004l<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World from nginx!</title>
+</head>
+<body>
+<p>The more things change, the more they stay the same.</p>
+</body>
+</html> 
+[?2004h~/container-exercises/nginx-network > exit
+[?2004lexit
+
+Script done on 2024-11-07 10:54:33+01:00 [COMMAND_EXIT_CODE="0"]

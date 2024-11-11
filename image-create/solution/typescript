@@ -1,0 +1,77 @@
+Script started on 2024-11-07 09:35:42+01:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="125" LINES="24"]
+[?2004h~/container-exercises/image-create > podman build -t hello-world:1.2 .
+[?2004lSTEP 1/4: FROM docker.io/library/ubuntu:noble
+Trying to pull docker.io/library/ubuntu:noble...
+Getting image source signatures
+Copying blob ff65ddf9395b [--------------------------------------] 0.0b / 28.4MiB (skipped: 0.0b = 0.00%)
+Copying blob ff65ddf9395b [--------------------------------------] 0.0b / 28.4MiB | 0.0 b/s
+[2A[JCopying blob ff65ddf9395b [--------------------------------------] 0.0b / 28.4MiB (skipped: 0.0b = 0.00%)
+Copying blob ff65ddf9395b [>-------------------------------------] 622.2KiB / 28.4MiB | 12.9 MiB/s
+[2A[JCopying blob ff65ddf9395b [==>-----------------------------------] 2.2MiB / 28.4MiB | 17.9 MiB/s
+[1A[JCopying blob ff65ddf9395b [====>---------------------------------] 3.7MiB / 28.4MiB | 87.6 MiB/s
+[1A[JCopying blob ff65ddf9395b [======>-------------------------------] 5.3MiB / 28.4MiB | 15.9 MiB/s
+[1A[JCopying blob ff65ddf9395b [========>-----------------------------] 6.6MiB / 28.4MiB | 22.0 MiB/s
+[1A[JCopying blob ff65ddf9395b [=========>----------------------------] 7.6MiB / 28.4MiB | 28.5 MiB/s
+[1A[JCopying blob ff65ddf9395b [==========>---------------------------] 8.4MiB / 28.4MiB | 5.4 MiB/s
+[1A[JCopying blob ff65ddf9395b [============>-------------------------] 9.8MiB / 28.4MiB | 41.7 MiB/s
+[1A[JCopying blob ff65ddf9395b [==============>-----------------------] 11.1MiB / 28.4MiB | 9.3 MiB/s
+[1A[JCopying blob ff65ddf9395b [=================>--------------------] 13.1MiB / 28.4MiB | 25.6 MiB/s
+[1A[JCopying blob ff65ddf9395b [==================>-------------------] 14.1MiB / 28.4MiB | 6.4 MiB/s
+[1A[JCopying blob ff65ddf9395b [====================>-----------------] 15.5MiB / 28.4MiB | 22.2 MiB/s
+[1A[JCopying blob ff65ddf9395b [======================>---------------] 17.1MiB / 28.4MiB | 10.4 MiB/s
+[1A[JCopying blob ff65ddf9395b [========================>-------------] 18.4MiB / 28.4MiB | 28.4 MiB/s
+[1A[JCopying blob ff65ddf9395b [==========================>-----------] 20.4MiB / 28.4MiB | 22.2 MiB/s
+[1A[JCopying blob ff65ddf9395b [============================>---------] 21.5MiB / 28.4MiB | 8.9 MiB/s
+[1A[JCopying blob ff65ddf9395b [==============================>-------] 23.1MiB / 28.4MiB | 14.1 MiB/s
+[1A[JCopying blob ff65ddf9395b [=================================>----] 25.2MiB / 28.4MiB | 20.6 MiB/s
+[1A[JCopying blob ff65ddf9395b [===================================>--] 26.7MiB / 28.4MiB | 17.0 MiB/s
+[1A[JCopying blob ff65ddf9395b [====================================>-] 27.9MiB / 28.4MiB | 29.8 MiB/s
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+[1A[JCopying blob ff65ddf9395b done   | 
+Copying config 59ab366372 done   | 
+[1A[JCopying config 59ab366372 done   | 
+[1A[JCopying config 59ab366372 done   | 
+Writing manifest to image destination
+STEP 2/4: COPY hello-world.sh /
+--> 6c0de2f3f6f8
+STEP 3/4: RUN chmod 0755 /hello-world.sh
+--> 3e61e4b054b1
+STEP 4/4: CMD /hello-world.sh
+COMMIT hello-world:1.2
+--> 7877bd7b6755
+Successfully tagged localhost/hello-world:1.2
+7877bd7b67551478744e26462a24fc60c6fa04c59f6d25ad664ebb6449b41340
+[?2004h~/container-exercises/image-create > podman run -it hello-world:1.2 
+[?2004lHello World
+Hello World
+Hello World
+Hello World
+Hello World
+Hello World
+^C[?2004h~/container-exercises/image-create > podman image ls
+[?2004lREPOSITORY                TAG         IMAGE ID      CREATED             SIZE
+localhost/hello-world     1.2         7877bd7b6755  About a minute ago  80.6 MB
+docker.io/library/ubuntu  noble       59ab366372d5  3 weeks ago         80.6 MB
+[?2004h~/container-exercises/image-create > podman image history hello-world:1.2 
+[?2004lID            CREATED             CREATED BY                                     SIZE        COMMENT
+3e61e4b054b1  About a minute ago  /bin/sh -c #(nop) CMD /hello-world.sh          0B          FROM 3e61e4b054b1
+<missing>     About a minute ago  /bin/sh -c chmod 0755 /hello-world.sh          4.61kB      FROM 6c0de2f3f6f8
+6c0de2f3f6f8  About a minute ago  /bin/sh -c #(nop) COPY file:4efc371afd9a6d...  2.05kB      FROM docker.io/library/ubuntu:noble
+59ab366372d5  3 weeks ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]           0B          
+<missing>     3 weeks ago         /bin/sh -c #(nop) ADD file:34dc4f3ab7a694e...  80.6MB      
+<missing>     3 weeks ago         /bin/sh -c #(nop)  LABEL org.opencontainer...  0B          
+<missing>     3 weeks ago         /bin/sh -c #(nop)  LABEL org.opencontainer...  0B          
+<missing>     3 weeks ago         /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH    0B          
+<missing>     3 weeks ago         /bin/sh -c #(nop)  ARG RELEASE                 0B          
+[?2004h~/container-exercises/image-create > exit
+[?2004lexit
+
+Script done on 2024-11-07 09:39:31+01:00 [COMMAND_EXIT_CODE="0"]

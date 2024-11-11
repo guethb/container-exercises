@@ -1,0 +1,146 @@
+Script started on 2024-11-07 10:13:03+01:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="125" LINES="24"]
+[?2004h~/container-exercises/image-manage > podman imagfe [K[K[Ke --help
+[?2004lManage images
+
+Description:
+  Manage images
+
+Usage:
+  podman image [command]
+
+Available Commands:
+  build       Build an image using instructions from Containerfiles
+  diff        Inspect changes to the image's file systems
+  exists      Check if an image exists in local storage
+  history     Show history of a specified image
+  import      Import a tarball to create a filesystem image
+  inspect     Display the configuration of an image
+  list        List images in local storage
+  load        Load image(s) from a tar archive
+  mount       Mount an image's root filesystem
+  prune       Remove unused images
+  pull        Pull an image from a registry
+  push        Push an image to a specified destination
+  rm          Remove one or more images from local storage
+  save        Save image(s) to an archive
+  scp         Securely copy images
+  search      Search registry for image
+  sign        Sign an image
+  tag         Add an additional name to a local image
+  tree        Print layer hierarchy of an image in a tree format
+  trust       Manage container image trust policy
+  unmount     Unmount an image's root filesystem
+  untag       Remove a name from a local image
+
+[?2004h~/container-exercises/image-manage > image[K[K[K[K[Kpodman image list
+[?2004lREPOSITORY                 TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/busybox  latest      27a71e19c956  5 weeks ago  4.52 MB
+[?2004h~/container-exercises/image-manage > podman image list --help
+[?2004lList images in local storage
+
+Description:
+  Lists images previously pulled to the system or created on the system.
+
+Usage:
+  podman image list [options] [IMAGE]
+
+Aliases:
+  list, ls
+
+Examples:
+  podman image list --format json
+  podman image list --sort repository --format "table {{.ID}} {{.Repository}} {{.Tag}}"
+  podman image list --filter dangling=true
+
+Options:
+  -a, --all                  Show all images (default hides intermediate images)
+      --digests              Show digests
+  -f, --filter stringArray   Filter output based on conditions provided (default [])
+      --format string        Change the output format to JSON or a Go template
+      --history              Display the image name history
+      --no-trunc             Do not truncate output
+  -n, --noheading            Do not print column headings
+  -q, --quiet                Display only image IDs
+      --sort string          Sort by tag, created, id, repository, size (default "created")
+
+[?2004h~/container-exercises/image-manage > podman image rm docker.io/library/busybox:latest 
+[?2004lUntagged: docker.io/library/busybox:latest
+Deleted: 27a71e19c95622dce4d60d4a3760707495c9875f5c5322c5bd535214799593ce
+[?2004h~/container-exercises/image-manage > podman image pull docker.io/library/busybox:1.37-glibc
+[?2004lTrying to pull docker.io/library/busybox:1.37-glibc...
+Getting image source signatures
+Copying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB (skipped: 0.0b = 0.00%)
+Copying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+[2A[JCopying blob a46fbb00284b [--------------------------------------] 0.0b / 2.1MiB (skipped: 0.0b = 0.00%)
+Copying blob a46fbb00284b [================>---------------------] 927.3KiB / 2.1MiB | 15.7 MiB/s
+[2A[JCopying blob a46fbb00284b done   | 
+[1A[JCopying blob a46fbb00284b done   | 
+[1A[JCopying blob a46fbb00284b done   | 
+Copying config 27a71e19c9 done   | 
+[1A[JCopying config 27a71e19c9 done   | 
+Writing manifest to image destination
+27a71e19c95622dce4d60d4a3760707495c9875f5c5322c5bd535214799593ce
+[?2004h~/container-exercises/image-manage > podman image ls
+[?2004lREPOSITORY                 TAG         IMAGE ID      CREATED      SIZE
+docker.io/library/busybox  1.37-glibc  27a71e19c956  5 weeks ago  4.52 MB
+[?2004h~/container-exercises/image-manage > podman inspect docker.io/library/busybox:1.37-glibc 
+[?2004l[
+     {
+          "Id": "27a71e19c95622dce4d60d4a3760707495c9875f5c5322c5bd535214799593ce",
+          "Digest": "sha256:3757a0aac2f46c8f8f96dae75b7f2b633d745252ef9d46bdce9c588a564cfc84",
+          "RepoTags": [
+               "docker.io/library/busybox:1.37-glibc"
+          ],
+          "RepoDigests": [
+               "docker.io/library/busybox@sha256:22f27168517de1f58dae0ad51eacf1527e7e7ccc47512d3946f56bdbe913f564",
+               "docker.io/library/busybox@sha256:3757a0aac2f46c8f8f96dae75b7f2b633d745252ef9d46bdce9c588a564cfc84"
+          ],
+          "Parent": "",
+          "Comment": "",
+          "Created": "2024-09-26T21:31:42Z",
+          "Config": {
+               "Cmd": [
+                    "sh"
+               ]
+          },
+          "Version": "",
+          "Author": "",
+          "Architecture": "amd64",
+          "Os": "linux",
+          "Size": 4516719,
+          "VirtualSize": 4516719,
+          "GraphDriver": {
+               "Name": "overlay",
+               "Data": {
+                    "UpperDir": "/home/drv/.local/share/containers/storage/overlay/58f32e9504c8eb248292326a1975174b0560f7a3ad1b75880b9571c4eb7144a0/diff",
+                    "WorkDir": "/home/drv/.local/share/containers/storage/overlay/58f32e9504c8eb248292326a1975174b0560f7a3ad1b75880b9571c4eb7144a0/work"
+               }
+          },
+          "RootFS": {
+               "Type": "layers",
+               "Layers": [
+                    "sha256:58f32e9504c8eb248292326a1975174b0560f7a3ad1b75880b9571c4eb7144a0"
+               ]
+          },
+          "Labels": null,
+          "Annotations": {
+               "org.opencontainers.image.url": "https://github.com/docker-library/busybox",
+               "org.opencontainers.image.version": "1.37.0-glibc"
+          },
+          "ManifestType": "application/vnd.oci.image.manifest.v1+json",
+          "User": "",
+          "History": [
+               {
+                    "created": "2024-09-26T21:31:42Z",
+                    "created_by": "BusyBox 1.37.0 (glibc), Debian 12"
+               }
+          ],
+          "NamesHistory": [
+               "docker.io/library/busybox:1.37-glibc"
+          ]
+     }
+]
+[?2004h~/container-exercises/image-manage > exit
+[?2004lexit
+
+Script done on 2024-11-07 10:16:08+01:00 [COMMAND_EXIT_CODE="0"]

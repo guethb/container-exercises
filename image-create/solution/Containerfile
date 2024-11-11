@@ -1,0 +1,5 @@
+FROM docker.io/library/ubuntu:noble
+COPY hello-world.sh /
+RUN chmod 0755 /hello-world.sh
+CMD /hello-world.sh
+
